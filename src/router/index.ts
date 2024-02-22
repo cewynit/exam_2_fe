@@ -1,39 +1,41 @@
-import { createRouter, createWebHistory, NavigationGuardWithThis, RouteRecordRaw } from 'vue-router'
-import { PageName, Role } from '../common/contant/contants';
-import authMiddleware from './authMiddleware';
-import VueRouteMiddleware, { GLOBAL_MIDDLEWARE_NAME } from './middleware';
-const routes: Array<RouteRecordRaw> = [
-  {
-    path: '/about',
-    name: 'about',
-    component: () => import('../views/AboutView.vue'),
-    meta: {
-      public: true,
-    },
-  },
+import { createRouter, createWebHistory } from 'vue-router'
+import HomeView from '../views/HomeView.vue'
+
+const routes = [
   {
     path: '/',
-    name: PageName.BLOG,
-    component: () => import('../views/BlogView.vue'),
-    meta: {
-      public: true,
-    },
+    name: 'home',
+    component: HomeView
   },
   {
-    path: '/:catchAll(.*)*',
-    redirect: '/404',
+    path:'/index',
+    name:'IndexView',
+    component:() => import ('@/views/IndexView.vue')
   },
+  {
+    path: '/login',
+    name: 'LoginView',
+    component: () => import('@/views/Login/Login.vue')
+  },
+  {
+    path: '/admin',
+    component: () => import('@/views/AboutView.vue'),
+    children: [
+      {
+        path: 'product',
+        component: () => import('../views/Admin/Product/ProductView.vue')
+      },
+      {
+        path: 'user',
+        component: () => import('@/views/Admin/User/UserView.vue')
+      },
+    ]
+  }
 ]
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
 })
-
-// router.beforeEach(
-//   VueRouteMiddleware({
-//     [GLOBAL_MIDDLEWARE_NAME]: authMiddleware,
-//   }) as NavigationGuardWithThis<unknown>,
-// );
 
 export default router
