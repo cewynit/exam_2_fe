@@ -15,8 +15,8 @@ export const useProduct = () => {
         loading.setLoading(false)
         if(res.success)
           return {
-            data:res.data.items,
-            totalItems:res.data.totalItems
+            data:res.items,
+            totalItems:res.totalItems
           }
         return null
       } catch (error) {

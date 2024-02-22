@@ -118,7 +118,7 @@ watch(page, (newVal) => {
                   {{ item.description }}
                 </td>
                 <td>
-                  <v-img width="36" height="36" :src="item.imageUrl"></v-img>
+                  <v-img width="36" height="36" :src="item.image"></v-img>
                 </td>
                 <td class="text-center">
                   <v-btn density="compact" variant="text"><i class="fa-regular fa-pen-to-square mr-4"

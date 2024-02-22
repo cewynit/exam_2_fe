@@ -69,8 +69,6 @@ import axios from 'axios';
     ),
   );
   const login = handleSubmit(async () => {
-    // alert(email.value+ "   "+password.value)
-    // console.log('Logging in with:', email, password);
     const formData= new FormData();
     formData.append("email", email.value);
     formData.append("password", password.value);
