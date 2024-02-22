@@ -12,7 +12,7 @@ const routes: Array<RouteRecordRaw> = [
     },
   },
   {
-    path: '/index',
+    path: '/',
     name: PageName.BLOG,
     component: () => import('../views/BlogView.vue'),
     meta: {
