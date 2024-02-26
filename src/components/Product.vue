@@ -2,117 +2,61 @@
   <div class="py-8 px-4">
     <v-row>
       <v-col cols="4" sm="6" md="6" lg="2">
-        <v-select
-          v-model="SortCategory"
-          density="compact"
-          label="Name"
-          :items="['All']"
-          variant="outlined"
-          @change="applyFilters"
-        ></v-select>
+        <v-select v-model="SortCategory" density="compact" label="Name" :items="['All']" variant="outlined"
+          @change="applyFilters"></v-select>
       </v-col>
       <v-col cols="4" sm="6" md="6" lg="2">
-        <v-select
-          v-model="SortPrice"
-          label="Price"
-          density="compact"
-          :items="['Price ↑', 'Price ↓']"
-          variant="outlined"
-          @change="applyFilters"
-        ></v-select>
+        <v-select v-model="SortPrice" label="Price" density="compact" :items="['Price ↑', 'Price ↓']" variant="outlined"
+          @change="applyFilters"></v-select>
       </v-col>
       <v-col cols="4" sm="6" md="6" lg="2">
-        <v-select
-          v-model="SortAnotherPrice"
-          label="Price"
-          density="compact"
-          :items="['Err']"
-          variant="outlined"
-          @change="applyFilters"
-        ></v-select>
+        <v-select v-model="SortAnotherPrice" label="Price" density="compact" :items="['Err']" variant="outlined"
+          @change="applyFilters"></v-select>
       </v-col>
 
       <v-spacer></v-spacer>
 
       <v-col cols="5">
         <v-row>
-          <v-btn
-            href="login"
-            class="text-capitalize mt-3"
-            variant="text"
-            size="large"
-            style="background-color: #e7e3e3"
-          >Show all</v-btn>
-          <v-btn
-            href="admin"
-            class="text-capitalize mt-3"
-            elevation="2"
-            size="large"
-            style="color: #2264D1"
-          >Auction</v-btn>
-          <v-btn
-            class="text-capitalize mt-3"
-            variant="text"
-            size="large"
-            style="background-color: #e7e3e3"
-          >Buy now</v-btn>
+          <v-btn href="login" class="text-capitalize mt-3" variant="text" size="large"
+            style="background-color: #e7e3e3">Show all</v-btn>
+          <v-btn href="admin" class="text-capitalize mt-3" elevation="2" size="large"
+            style="color: #2264D1">Auction</v-btn>
+          <v-btn class="text-capitalize mt-3" variant="text" size="large" style="background-color: #e7e3e3">Buy
+            now</v-btn>
           <v-spacer></v-spacer>
 
-          <v-btn
-            class="mt-3"
-            variant="text"
-            size="large"
-            style="background-color: #e7e3e3"
-            @click="toggleList"
-          >
+          <v-btn class="mt-3" variant="text" size="large" style="background-color: #e7e3e3" @click="toggleList">
             <div>
               <v-icon icon="mdi mdi-view-list"></v-icon>
-              <v-list
-                v-if="showList"
-                border
-                class="mx-auto text-left"
-                max-width="356px"
-                style="position: absolute; top: 100%; z-index:1;right:0;width:256px;"
-              >
-                <v-list-item
-                  link
-                  prepend-icon="mdi-inbox-arrow-down"
-                  title="Inbox"
-                  href="https://mail.google.com/mail/u/1/#inbox"
-                >
+              <v-list v-if="showList" border class="mx-auto text-left" max-width="356px"
+                style="position: absolute; 
+                      top: 100%; 
+                      z-index:1;
+                      right:0;
+                      width:256px;">
+                <v-list-item link prepend-icon="mdi-inbox-arrow-down" title="Inbox"
+                  href="https://mail.google.com/mail/u/1/#inbox">
                   <template v-slot:append>
                     <v-badge color="error" content="6" inline></v-badge>
                   </template>
                 </v-list-item>
 
-                <v-list-item
-                  link
-                  prepend-icon="mdi-send"
-                  title="Sent Mail"
-                  href="https://mail.google.com/mail/u/1/#inbox?compose=new"
-                ></v-list-item>
+                <v-list-item link prepend-icon="mdi-send" title="Sent Mail"
+                  href="https://mail.google.com/mail/u/1/#inbox?compose=new"></v-list-item>
 
-                <v-list-item
-                  link
-                  prepend-icon="mdi-delete"
-                  title="Trash"
-                  href="https://mail.google.com/mail/u/1/#trash"
-                >
+                <v-list-item link prepend-icon="mdi-delete" title="Trash" href="https://mail.google.com/mail/u/1/#trash">
                   <template v-slot:append>
                     <v-badge color="info" content="12" inline></v-badge>
                   </template>
                 </v-list-item>
-                <v-list-item
-                  link
-                  prepend-icon="mdi-alert-circle"
-                  title="Spam"
-                  href="https://mail.google.com/mail/u/1/#spam"
-                ></v-list-item>
+                <v-list-item link prepend-icon="mdi-alert-circle" title="Spam"
+                  href="https://mail.google.com/mail/u/1/#spam"></v-list-item>
               </v-list>
             </div>
           </v-btn>
 
-          <v-btn class="mt-3" size="large" style="color: #2264d1">
+          <v-btn class="mt-3" size="large" style="color: #2979FF  ">
             <v-icon icon="mdi mdi-microsoft"></v-icon>
           </v-btn>
         </v-row>
@@ -138,22 +82,12 @@
   </div>
   <div>
     <v-row style="padding-left:50px;">
-      <v-col cols="12" sm="3" v-for="(mayanhs, i) in Mayanhs" :key="i">
+      <v-col cols="12" sm="6" md="4" lg="3" v-for="(mayanhs, i) in Mayanhs" :key="i">
         <v-card height="472px" width="258px" align="center" variant="flat" hover>
-          <v-img
-            :src="mayanhs.image"
-            width="227px"
-            height="224px"
-            contain
-            class="flex-grow-1"
-            style="object-fit: cover"
-          ></v-img>
-          <v-card-text
-            class="mt-n4 text-left"
-            style="font-size: 16px; color: #19191d"
-            height="226px"
-            with="74px"
-          >{{ mayanhs.title }}</v-card-text>
+          <v-img :src="mayanhs.image" width="227px" height="224px" contain class="flex-grow-1"
+            style="object-fit: cover"></v-img>
+          <v-card-text class="mt-n4 text-left" style="font-size: 16px; color: #19191d" height="226px" with="74px">{{
+            mayanhs.title }}</v-card-text>
           <v-card-text class="mt-n2 text-left" height="226px" width="36px">
             <v-row>
               <v-col cols="6">
@@ -168,30 +102,15 @@
               </v-col>
             </v-row>
           </v-card-text>
-          <v-card-text
-            class="mt-n4 text-left"
-            style="font-size: 14px; color: #787885"
-            height="226px"
-            width="21px"
-          >{{ mayanhs.reviews }}</v-card-text>
+          <v-card-text class="mt-n4 text-left" style="font-size: 14px; color: #787885" height="226px" width="21px">{{
+            mayanhs.reviews }}</v-card-text>
 
           <v-card-actions>
-            <v-rating
-              half-increments
-              hover
-              readonly
-              model-value="4.5"
-              :size="20"
-              color="yellow-darken-3"
-              class="mb-1 mr-3"
-            ></v-rating>4.5
+            <v-rating half-increments hover readonly model-value="4.5" :size="20" color="yellow-darken-3"
+              class="mb-1 mr-3"></v-rating>4.5
             <v-spacer></v-spacer>
-            <v-btn
-              prepend-icon="mdi-heart-outline"
-              variant="outlined"
-              class="text-capitalize"
-              color="primary"
-            >Watch</v-btn>
+            <v-btn prepend-icon="mdi-heart-outline" variant="outlined" class="text-capitalize"
+              color="primary">Watch</v-btn>
           </v-card-actions>
         </v-card>
       </v-col>
