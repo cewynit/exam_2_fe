@@ -15,13 +15,15 @@ export const AuthStore = defineStore('authStore', () => {
 
   async function login(body: IBodyLogin) {
     const res = await authServiceApi.login(body);
+    console.log(res);
+    
     // console.log(res)
     if (res.success) {
-      localStorageAuthService.setAccessToken(res.data.accessToken.token);
-      localStorageAuthService.setAccessTokenExpiredAt(res.data.accessToken.expiresIn);
+      localStorageAuthService.setAccessToken(res.data.accessToken);
+      localStorageAuthService.setAccessTokenExpiredAt(res.data.expiresIn);
 
-      localStorageAuthService.setRefreshToken(res.data.refreshToken.token);
-      localStorageAuthService.setRefresh_TokenExpiredAt(res.data.refreshToken.expiresIn);
+      localStorageAuthService.setRefreshToken(res.data.refreshToken);
+      localStorageAuthService.setRefresh_TokenExpiredAt(res.data.refresh_expiresIn);
       
       localStorageAuthService.setUserRole(res.data.profile?.role || "");
       return true

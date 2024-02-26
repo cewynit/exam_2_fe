@@ -8,7 +8,7 @@
           ></v-img>
         </v-col>
         <v-col cols="3" class="text-right">
-          <v-icon>mdi-backburger</v-icon>
+          <v-icon >mdi-backburger</v-icon>
         </v-col>
       </v-row>
     </v-toolbar>

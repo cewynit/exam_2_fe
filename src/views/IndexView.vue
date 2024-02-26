@@ -98,7 +98,7 @@ h2 {
   height: auto;
   margin: 10px;
   color: black;
-  border-radius: 5px;
+  border-radius: 16px;
   padding: 20px;
 }
 

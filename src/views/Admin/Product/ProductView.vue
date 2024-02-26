@@ -18,37 +18,29 @@ const { fetchProducts, products, query, searchProducts } = useProduct()
 onMounted(async () => {
   loadData()
 })
-
+const TotalProducts = ref(0);
 const loadData = async () => {
-  try {
-    const res = await fetchProducts();
-    if (res && res.data && res.totalItems) {
-      products.value = res.data;
-      lengthPage.value = Math.ceil(res.totalItems / seletedValue.value);
-    } else {
-      showErrorNotification("Không có dữ liệu sản phẩm.");
-    }
-  } catch (error) {
-    showErrorNotification("Đã xảy ra lỗi trong quá trình tải dữ liệu sản phẩm.");
-    console.error("Lỗi trong quá trình tải dữ liệu sản phẩm:", error);
+  const res = await fetchProducts()
+  if(res.data)
+  {
+    products.value = res.data;
+    lengthPage.value = Math.ceil(res.totalItems / seletedValue.value);
+    TotalProducts.value=res.totalItems
+    return
   }
+  products.value=[]
 }
-
 const searchData = async () => {
-  try {
-    const res = await searchProducts();
-    if (res && res.data && res.totalItems) {
-      products.value = res.data;
-      lengthPage.value = Math.ceil(res.totalItems / seletedValue.value);
-    } else {
-      showErrorNotification("Không tìm thấy kết quả.");
-    }
-  } catch (error) {
-    showErrorNotification("Đã xảy ra lỗi trong quá trình tìm kiếm sản phẩm.");
-    console.error("Lỗi trong quá trình tìm kiếm sản phẩm:", error);
+  const res = await searchProducts()
+  if(res.data)
+  {
+    products.value = res.data;
+    lengthPage.value = Math.ceil(res.totalItems / seletedValue.value);
+    TotalProducts.value=res.totalItems
+    return
   }
+  products.value=[]
 }
-
 const addProduct = () => {
   isShowDialog.value = true
   idEdit = null
