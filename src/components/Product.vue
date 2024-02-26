@@ -66,7 +66,7 @@
             @click="toggleList"
           >
             <div>
-              <v-icon icon="mdi-menu"></v-icon>
+              <v-icon icon="mdi mdi-view-list"></v-icon>
               <v-list
                 v-if="showList"
                 border
@@ -113,7 +113,7 @@
           </v-btn>
 
           <v-btn class="mt-3" size="large" style="color: #2264d1">
-            <v-icon icon="mdi-microsoft-windows"></v-icon>
+            <v-icon icon="mdi mdi-microsoft"></v-icon>
           </v-btn>
         </v-row>
       </v-col>

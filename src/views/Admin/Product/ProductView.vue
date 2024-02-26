@@ -20,15 +20,35 @@ onMounted(async () => {
 })
 
 const loadData = async () => {
-  const res = await fetchProducts()
-  products.value = res.data;
-  lengthPage.value = Math.ceil(res.totalItems / seletedValue.value);
+  try {
+    const res = await fetchProducts();
+    if (res && res.data && res.totalItems) {
+      products.value = res.data;
+      lengthPage.value = Math.ceil(res.totalItems / seletedValue.value);
+    } else {
+      showErrorNotification("Không có dữ liệu sản phẩm.");
+    }
+  } catch (error) {
+    showErrorNotification("Đã xảy ra lỗi trong quá trình tải dữ liệu sản phẩm.");
+    console.error("Lỗi trong quá trình tải dữ liệu sản phẩm:", error);
+  }
 }
+
 const searchData = async () => {
-  const res = await searchProducts()
-  products.value = res.data;
-  lengthPage.value = Math.ceil(res.totalItems / seletedValue.value);
+  try {
+    const res = await searchProducts();
+    if (res && res.data && res.totalItems) {
+      products.value = res.data;
+      lengthPage.value = Math.ceil(res.totalItems / seletedValue.value);
+    } else {
+      showErrorNotification("Không tìm thấy kết quả.");
+    }
+  } catch (error) {
+    showErrorNotification("Đã xảy ra lỗi trong quá trình tìm kiếm sản phẩm.");
+    console.error("Lỗi trong quá trình tìm kiếm sản phẩm:", error);
+  }
 }
+
 const addProduct = () => {
   isShowDialog.value = true
   idEdit = null
@@ -39,7 +59,6 @@ const updateProductById = id => {
 }
 const deleteProductById = async (id) => {
   const data = await productServiceApi._delete(id)
-  // console.log(data)
   if (data.success) {
     loadData()
     isDialogDelete.value = false
@@ -56,7 +75,6 @@ const close = () => {
 }
 
 watch(seletedValue, (newval) => {
-  // alert(newval)
   query.limit = newval
   query.page = 1
   page.value = 1
@@ -111,7 +129,7 @@ watch(page, (newVal) => {
             </thead>
             <tbody>
               <tr v-for="(item, index) in products" :key="index">
-                <td class="font-weight-bold" style="color: black;">{{ item.name }}</td>
+                <td class="" style="color: black;">{{ item.name }}</td>
                 <td style="color: black;">{{ formatNumberWithCommas(item.price) }} đ</td>
                 <td style="color: black;">{{ formatNumberWithCommas(item.quantity) }}</td>
                 <td style="width: 250px;" class="v-text-truncate">

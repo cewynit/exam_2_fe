@@ -8,7 +8,6 @@ export const useUserStore = defineStore('userStore', () => {
     const isShowDialogChangePassword = ref(false);
   
     const profile = computed(() => {
-    //   return localStorageAuthService.getLoginUser();
     });
   
     return {

@@ -28,8 +28,8 @@ export const useProduct = () => {
         const res = await productServiceApi._getList<IProduct>(query);
         if(res.success)
             return {
-              data:res.data.items,
-              totalItems:res.data.totalItems
+              data:res.items,
+              totalItems:res.totalItems
             }
         return null
       } catch (error) {
