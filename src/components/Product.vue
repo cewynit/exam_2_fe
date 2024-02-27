@@ -10,7 +10,7 @@
           @change="applyFilters"></v-select>
       </v-col>
       <v-col cols="4" sm="6" md="6" lg="2">
-        <v-select v-model="SortAnotherPrice" label="Price" density="compact" :items="['Err']" variant="outlined"
+        <v-select v-model="SortPrice" label="Price" density="compact" :items="['Price ↑', 'Price ↓']" variant="outlined"
           @change="applyFilters"></v-select>
       </v-col>
 
@@ -91,7 +91,7 @@
           <v-card-text class="mt-n2 text-left" height="226px" width="36px">
             <v-row>
               <v-col cols="6">
-                <v-card-item>
+                <v-card-item style="padding-left: 0%;">
                   <strong style="font-size: 18px">${{ mayanhs.price }}</strong>
                 </v-card-item>
               </v-col>
