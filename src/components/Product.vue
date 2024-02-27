@@ -19,16 +19,16 @@
       <v-col cols="5">
         <v-row>
           <v-btn href="login" class="text-capitalize mt-3" variant="text" size="large"
-            style="background-color: #e7e3e3">Show all</v-btn>
+            style="background-color: #dcf2f6">Show all</v-btn>
           <v-btn href="admin" class="text-capitalize mt-3" elevation="2" size="large"
             style="color: #2264D1">Auction</v-btn>
-          <v-btn class="text-capitalize mt-3" variant="text" size="large" style="background-color: #e7e3e3">Buy
+          <v-btn class="text-capitalize mt-3" variant="text" size="large" style="background-color: #dcf2f6">Buy
             now</v-btn>
           <v-spacer></v-spacer>
 
-          <v-btn class="mt-3" variant="text" size="large" style="background-color: #e7e3e3" @click="toggleList">
+          <v-btn class="mt-3" variant="text" size="large" style="background-color: #dcf2f6" @click="toggleList">
             <div>
-              <v-icon icon="mdi mdi-view-list"></v-icon>
+              <v-icon icon="mdi mdi-view-list" style="color: #787885;"></v-icon>
               <v-list v-if="showList" border class="mx-auto text-left" max-width="356px"
                 style="position: absolute; 
                       top: 100%; 
@@ -107,7 +107,7 @@
 
           <v-card-actions>
             <v-rating half-increments hover readonly model-value="4.5" :size="20" color="yellow-darken-3"
-              class="mb-1 mr-3"></v-rating>4.5
+              class="mb-1 mr-3" style="padding-bottom: 6px;"></v-rating>4.5
             <v-spacer></v-spacer>
             <v-btn prepend-icon="mdi-heart-outline" variant="outlined" class="text-capitalize"
               color="primary">Watch</v-btn>
@@ -157,7 +157,7 @@ export default {
             "Plastic useless plugs and tubes for high-fidelity prototyping. Fit & Eat!",
           price: "12.48",
           hiep:
-            "https://scontent.fhan17-1.fna.fbcdn.net/v/t1.15752-9/422645622_151360698070473_6110360314931683548_n.png?stp=cp0_dst-png&_nc_cat=107&ccb=1-7&_nc_sid=8cd0a2&_nc_ohc=YqILnhl97xgAX85pl5r&_nc_ht=scontent.fhan17-1.fna&oh=03_AdSF9utHNdVmpb41BI2qO1doc-RPcCT8FPmxFea_NUktqw&oe=65D9A4F0",
+            "https://github.com/cewynit/exam_2_fe/blob/main/src/assets/50%25.png?raw=true",
           reviews: "Wordwide shitting available Buyers protection possible!"
         },
         {
