@@ -144,7 +144,7 @@ const submit = handleSubmit(async () => {
     formData.append('phone', phone.value);
     formData.append('file', imageFile.value);
     formData.append('role', role.value);
-    formData.append('password', "1234567")
+    formData.append('password', "1234567Aa@")
 
     if (id == null) {
         const data = await userServiceApi.createUser(formData);
@@ -183,16 +183,11 @@ const submit = handleSubmit(async () => {
 const getUserById = async (id) => {
     try {
         const data = await userServiceApi._getDetail(id);
-        if (data.success) {
             name.value = data.data.name;
             email.value = data.data.email;
             birthday.value = data.data.birthday;
             phone.value = data.data.phone;
             role.value = data.data.role;
-        }
-        else {
-            showWarningsNotification(data.message)
-        }
     } catch (error) {
         console.error('Error fetching user detail:', error);
     }

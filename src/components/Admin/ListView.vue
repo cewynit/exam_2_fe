@@ -28,14 +28,14 @@
     </v-list>
   </v-navigation-drawer>
 </template>
-  
+<script></script>
 <script>
 export default {
   name: "ListView",
   data() {
     return {
       links: [
-        { icon: " mdi-newspaper", text: "Sản phẩm", link: "/admin/Product" },
+        { icon: " mdi-newspaper", text: "Product", link: "/admin/Product" },
         { icon: "mdi-account-multiple", text: "User", link: "/admin/User" },
       ],
     };
@@ -44,5 +44,4 @@ export default {
 </script>
   
 <style scoped>
-/* Các quy tắc CSS scoped nếu cần thiết */
 </style>

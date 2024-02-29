@@ -39,7 +39,7 @@
             <tr v-for="i in users" :key="i">
               <td>
                 <v-img class="ma-1" style="border-radius: 2px;"  width="36" height="36"
-                  :src="i.avatar"></v-img>
+                  :src="i.image"></v-img>
               </td>
               <td>{{ i.name }}</td>
               <td>{{ i.email }}</td>
