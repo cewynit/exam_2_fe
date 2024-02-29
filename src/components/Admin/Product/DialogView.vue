@@ -39,7 +39,6 @@
                         <v-col cols="12" style="font-size: 13px;">
                             <span>Ảnh sản phẩm</span><span class="text-blue ml-2">*</span><br>
                             <input @change="handleImageChange" type="file" class="custom-file-input" />
-
                         </v-col>
                     </v-row>
                 </v-container>
@@ -74,8 +73,6 @@ watch(() => props.idEdit, (newValue) => {
         getProductById(id)
     }
 });
-
-
 
 const { handleSubmit, resetForm } = useForm();
 
@@ -117,7 +114,6 @@ const { value: description, errorMessage: descriptionError } = useField(
 
 
 const submit = handleSubmit(async () => {
-    // alert(name.value + "   " + price.value)
     loading.setLoading(true)
     const formData = new FormData();
     formData.append('name', name.value);
@@ -127,7 +123,7 @@ const submit = handleSubmit(async () => {
     formData.append('file', imageFile.value);
     if (id == null) {
         const data = await productServiceApi.createProduct(formData);
-        // console.log(data)
+
         if (!data.success) {
             close()
             loading.setLoading(false)
@@ -182,6 +178,7 @@ const imageFile = ref(null);
 const handleImageChange = (event) => {
     const file = event.target.files[0];
     imageFile.value = file;
+    
 };
 const close = () => {
     emit('close')

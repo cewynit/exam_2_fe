@@ -43,13 +43,13 @@ export function isStringify<T>(obj: T | Record<string, unknown>): boolean {
   return true;
 }
 
-export function showErrorNotification(message: string, title?: string, duration = 2) {
+export function showErrorNotification(message: string) {
   if (!message) return;
   const toast = useToast();
   toast.error(message);
 }
 
-export function showSuccessNotification(message: string, title?: string, duration = 2) {
+export function showSuccessNotification(message: string) {
   if (!message) return;
   const toast = useToast();
   toast.success(message);
@@ -159,9 +159,14 @@ export const getDiffFormData = (
 
 export const formatDateString = (ds: string, format: string): string => {
   return dayjs(ds).format(format);
+};export const formatPhoneNumber = (phoneNumber: string): string => {
+  const cleaned = phoneNumber.replace(/\D/g, '');
+  if (cleaned.length === 10) {
+      return `${cleaned.substr(0, 3)}-${cleaned.substr(3, 3)}-${cleaned.substr(6)}`;
+  } else {
+      return phoneNumber;
+  }
 };
-
-// remove undefined/null items of array, if not have item return undefined
 export const removeEmptyValue = (arrays: any[]) => {
   const result: any[] = [];
   arrays?.forEach((item) => {
@@ -180,5 +185,15 @@ export const scrollToIdElement = (id: string) => {
 };
 
 export const formatNumberWithCommas=(value:string)=> {
-  return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
+
+
+export const checkSearchEnter = (str:string) => {
+  const regex = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+  return regex.test(str);
+};
+export const checkSearchUserEnter = (str: string) => {
+  const regex = /[!#$%^&*()_+\-=\[\]{};':"\\|,<>\/?]+/;
+  return regex.test(str);
+};

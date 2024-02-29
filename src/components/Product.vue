@@ -214,7 +214,7 @@ export default {
             "Envelope, Stripes, Pencil and etc. Purchase this kit today and feel OKAY",
           price: "1.25",
           hiep:
-            "https://scontent.fhan17-1.fna.fbcdn.net/v/t1.15752-9/418381248_1023379472081837_538361188996784195_n.png?stp=cp0_dst-png&_nc_cat=107&ccb=1-7&_nc_sid=8cd0a2&_nc_ohc=YDytElM5CCUAX_qUZx1&_nc_ht=scontent.fhan17-1.fna&oh=03_AdTHzA48gVylcTJZKT6Y6c_2bwaqB9Pu5z1dfcSrUfE6FQ&oe=65D99AAD",
+            "https://github.com/cewynit/exam_2_fe/blob/main/src/assets/cool.png?raw=true",
           reviews: " Eligible for Shipping To Mars or somewhere else  else"
         },
         {

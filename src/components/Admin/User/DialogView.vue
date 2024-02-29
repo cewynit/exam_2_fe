@@ -46,20 +46,14 @@
                             <span style="color:red">{{ roleError }}</span>
                         </v-col>
                         <v-col cols="12" style="font-size: 13px;">
-                            <span>Avatar</span><span class="text-blue ml-2">*</span>
-                            <v-text-field v-model="avatar" placeholder="Nhập link ảnh avatar"
-                                style="background-color: white;" density="compact" single-line hide-details
-                                variant="outlined"></v-text-field>
-                            <span style="color:red">{{ avatarError }}</span>
+                            <span>Avatar</span><span class="text-blue ml-2">*</span><br>
+                            <input @change="handleImageChange" type="file" class="custom-file-input" />
                         </v-col>
                     </v-row>
                 </v-container>
                 <v-card-actions class="pr-4">
                     <v-spacer></v-spacer>
-                    <v-btn class="text-capitalize" @click="close()" text="Hủy"></v-btn>
-                    <!-- <v-btn type="submit" color="#0F60FF" class="text-capitalize" variant="elevated">{{ idEdit ? "Cập" :
-                        "Thêm"
-                    }}<span class="text-lowercase">{{ idEdit ? "nhật" : "mới" }}</span></v-btn> -->
+                    <v-btn @click="close()" class="text-capitalize" text="Hủy"></v-btn>
                     <v-btn type="submit" color="#0F60FF" class="text-capitalize" variant="elevated">{{
                         idEdit ? "Update" : "Thêm" }}<span class="text-lowercase">{{ idEdit ? "" : "mới" }}</span></v-btn>
                 </v-card-actions>
@@ -72,7 +66,6 @@
 import { useForm, useField } from 'vee-validate';
 import * as yup from 'yup';
 import { ref, watch } from 'vue';
-import { productServiceApi } from '@/service/product.api';
 import { showSuccessNotification, showWarningsNotification } from '@/common/helper/helpers';
 import { useLoadingStore } from '@/store/loading';
 import { Role } from '@/common/contant/contants';
@@ -90,26 +83,6 @@ watch(() => props.idEdit, (newValue, oldValue) => {
         getUserById(id)
     }
 });
-const getUserById = async (id) => {
-    try {
-        const data = await userServiceApi._getDetail(id);
-        if (data.success) {
-            name.value = data.data.name;
-            email.value = data.data.email;
-            birthday.value = data.data.birthday;
-            phone.value = data.data.phone;
-            role.value = data.data.role;
-            avatar.value = data.data.avatar;
-        }
-        else {
-            showWarningsNotification(data.message)
-        }
-    } catch (error) {
-        console.error('Error fetching product detail:', error);
-    }
-}
-
-
 
 const { handleSubmit, resetForm } = useForm();
 
@@ -144,8 +117,6 @@ const { value: email, errorMessage: emailError } = useField(
         )
 );
 
-
-
 const { value: phone, errorMessage: phoneError } = useField(
     'phone',
     yup
@@ -163,18 +134,6 @@ const { value: role, errorMessage: roleError } = useField(
         .required('Không được bỏ trống')
 );
 
-const { value: avatar, errorMessage: avatarError } = useField(
-    'avatar',
-    yup
-        .string()
-        .required('Không được bỏ trống')
-        .matches(
-            /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/,
-            'Đây không phải là một URL hợp lệ'
-        )
-);
-
-
 
 const submit = handleSubmit(async () => {
     loading.setLoading(true)
@@ -183,47 +142,75 @@ const submit = handleSubmit(async () => {
     formData.append('email', email.value);
     formData.append('birthday', birthday.value);
     formData.append('phone', phone.value);
-    formData.append('avatar', avatar.value);
+    formData.append('file', imageFile.value);
     formData.append('role', role.value);
+    formData.append('password', "1234567")
+
     if (id == null) {
-        // alert("Thêm")
         const data = await userServiceApi.createUser(formData);
         if (!data.success) {
-            loading.setLoading(false)
             close()
+            loading.setLoading(false)
             showWarningsNotification(data.message)
+            empty()
         }
         else {
-            loading.setLoading(false)
             close()
             emit('loadData')
+            loading.setLoading(false)
             showSuccessNotification("Thêm thành công")
+            empty()
         }
     }
     else {
-        // alert("sửa")
         const data = await userServiceApi.updateUser(id, formData);
-        // console.log(data)
         if (!data.success) {
             close()
             loading.setLoading(false)
             showWarningsNotification(data.message)
-            showWarningsNotification(data.error)
+            empty()
         }
         else {
-            loading.setLoading(false)
             close()
             emit('loadData')
-            showSuccessNotification("Cập nhật thành công")
+            loading.setLoading(false)
+            showSuccessNotification("cập nhật thành công")
+            empty()
         }
     }
 });
+
+const getUserById = async (id) => {
+    try {
+        const data = await userServiceApi._getDetail(id);
+        if (data.success) {
+            name.value = data.data.name;
+            email.value = data.data.email;
+            birthday.value = data.data.birthday;
+            phone.value = data.data.phone;
+            role.value = data.data.role;
+        }
+        else {
+            showWarningsNotification(data.message)
+        }
+    } catch (error) {
+        console.error('Error fetching user detail:', error);
+    }
+}
+const empty = () => {
+    imageFile.value = null;
+    id = null;
+    props.idEdit = null
+}
+
+const imageFile = ref(null);
+const handleImageChange = (event) => {
+    const file = event.target.files[0];
+    imageFile.value = file;
+    
+};
 const close = () => {
     emit('close')
     resetForm()
-}
-const empty = () => {
-    id = null;
-    props.idEdit = null
 }
 </script>

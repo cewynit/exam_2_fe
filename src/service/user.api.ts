@@ -1,25 +1,33 @@
-import type { IBodyResponse } from '@/common/interface/interfaces';
-import axiosInstance from '@/plugins/axios';
-import { ApiService } from '@/plugins/axios/api';
+import type {
+  IBodyResponse,
+  ICommonListQuery,
+} from "@/common/interface/interfaces";
 import localStorageAuthService from "@/common/storages/authStorage";
-
+import axiosInstance from "@/plugins/axios";
+import { ApiService } from "@/plugins/axios/api";
 
 class UserApiService extends ApiService {
-
   async createUser(formData: FormData): Promise<IBodyResponse<any>> {
     return await this.client.post(`${this.baseUrl}`, formData, {
       headers: {
+        "Content-Type": "multipart/form-data",
         'Authorization': 'Bearer '+localStorageAuthService.getAccessToken()
       },
     });
   }
-  async updateUser(id:string,formData: FormData): Promise<IBodyResponse<any>> {
+  async updateUser(
+    id: string,
+    formData: FormData
+  ): Promise<IBodyResponse<any>> {
     return await this.client.put(`${this.baseUrl}/${id}`, formData, {
       headers: {
+        "Content-Type": "multipart/form-data",
         'Authorization': 'Bearer '+localStorageAuthService.getAccessToken()
       },
     });
   }
 }
-
-export const userServiceApi = new UserApiService({ baseUrl: '/user' }, axiosInstance);
+export const userServiceApi = new UserApiService(
+  { baseUrl: "/user" },
+  axiosInstance
+);
