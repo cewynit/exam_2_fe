@@ -258,11 +258,9 @@ export default {
   },
   watch: {
     SortCategory(newval) {
-      // alert(OldVal+"   "+newval)
       this.filterLoaiSanPham(newval);
     },
     SortPrice(newval) {
-      // alert(OldVal+"   "+newval)
       this.filterPrice(newval);
     }
   },

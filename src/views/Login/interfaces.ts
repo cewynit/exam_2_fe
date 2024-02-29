@@ -44,11 +44,8 @@ export interface IUser {
 }
 
 export type IBodyLogin = {
-  // provider: LoginProvider;
   email?: string;
   password?: string;
-  // code?: string;
-  // redirectUri?: string;
 };
 export interface ILoginResponse {
   accessToken: string;
@@ -69,7 +66,6 @@ export interface IDropDownOption {
   label?: string;
 }
 
-// For sidebar
 
 export interface ISidebarItem {
   title: string;
@@ -79,7 +75,6 @@ export interface ISidebarItem {
   subItems?: ISidebarItem[];
   active?: Ref<boolean>;
   role?: boolean;
-  // hasRoles?: SystemRole[];
 }
 
 export interface ISidebarGroup {
@@ -129,7 +124,7 @@ export interface ITableSorter {
   field: string;
   direction?: IOrderDirection;
 }
-// Permissions
+
 export interface IBasePermission {
   create?: boolean;
   delete?: boolean;
