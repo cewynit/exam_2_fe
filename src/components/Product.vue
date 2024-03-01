@@ -1,121 +1,100 @@
 <template>
-  <div class="py-8 px-4">
-    <v-row>
-      <v-col cols="4" sm="6" md="6" lg="2">
-        <v-select v-model="SortCategory" density="compact" label="Name" :items="['All']" variant="outlined"
-          @change="applyFilters"></v-select>
-      </v-col>
-      <v-col cols="4" sm="6" md="6" lg="2">
-        <v-select v-model="SortPrice" label="Price" density="compact" :items="['Price ↑', 'Price ↓']" variant="outlined"
-          @change="applyFilters"></v-select>
-      </v-col>
-      <v-col cols="4" sm="6" md="6" lg="2">
-        <v-select v-model="SortPrice" label="Price" density="compact" :items="['Price ↑', 'Price ↓']" variant="outlined"
-          @change="applyFilters"></v-select>
-      </v-col>
+  <v-row class="ml-3 mt-3">
+    <v-col cols="4" sm="6" md="6" lg="2">
+      <v-select v-model="SortCategory" density="compact" label="Name" :items="['All']" variant="outlined"
+        @change="applyFilters"></v-select>
+    </v-col>
+    <v-col cols="4" sm="6" md="6" lg="2">
+      <v-select v-model="SortPrice" label="Price" density="compact" :items="['Price ↑', 'Price ↓']" variant="outlined"
+        @change="applyFilters"></v-select>
+    </v-col>
+    <v-col cols="4" sm="6" md="6" lg="2">
+      <v-select v-model="SortPrice" label="Price" density="compact" :items="['Price ↑', 'Price ↓']" variant="outlined"
+        @change="applyFilters"></v-select>
+    </v-col>
+    <v-col cols="12" sm="6" md="6" lg="6" class="text-right">
+      <v-btn style="background-color: rgb(212, 227, 255);color:#0f0f13" class="rounded-1 text-capitalize" variant="tonal">
+        Show
+        <span class="text-lowercase ml-1"> all</span>
+      </v-btn>
+      <v-btn style="font-weight: 400;color: rgb(34, 100, 209);" bg-color="white" class="rounded-1 text-capitalize"
+        variant="elevated" elevation="3">
+        Auction
+      </v-btn>
+      <v-btn style="background-color:rgb(212, 227, 255);color:#0f0f13" class="rounded-1 text-capitalize" variant="tonal">
+        Buy
+        <span class="text-lowercase ml-1"> now</span>
+      </v-btn>
+      <v-btn style="background-color: rgb(212, 227, 255)" class="ml-5" ariant="tonal" elevation="0">
+        <v-icon>mdi mdi-menu</v-icon>
+      </v-btn>
+      <v-btn class="mr-5" variant="elevated">
+        <v-icon style="color: #0c5bda;">mdi mdi-microsoft</v-icon>
+      </v-btn>
+    </v-col>
+  </v-row>
+  <v-row class="mr-3 ml-1">
+    <v-col cols="12">
+      <v-chip variant="text"><span class="mt-2" style="font-weight: 550;">Related</span></v-chip>
+      <v-chip class="mr-2 mt-2">
+        worldwide shipping
+      </v-chip>
+      <v-chip class="mr-2 mt-2">
+        under $50
+      </v-chip>
+      <v-chip class="mr-2 mt-2">
+        kitten
+      </v-chip>
+      <v-chip class="mr-2 mt-2">
+        plastic plugs
+      </v-chip>
+      <v-chip class="mr-2 mt-2">
+        pucker shoes
+      </v-chip>
+      <v-chip class="mr-2 mt-2">
+        vintage typewriter
+      </v-chip>
+    </v-col>
+  </v-row>
+  <v-row style="padding-left:50px;" class="custom-shadow">
+    <v-col cols="12" sm="6" md="4" lg="3" v-for="(mayanhs, i) in Mayanhs" :key="i">
+      <v-card height="472px" width="258px" align="center" variant="flat" hover>
+        <v-img :src="mayanhs.image" width="227px" height="224px" contain class="flex-grow-1"
+          style="object-fit: cover"></v-img>
+        <v-card-text class="mt-n4 text-left" style="font-size: 16px; color: #19191d" height="226px" with="74px">{{
+          mayanhs.title }}</v-card-text>
+        <v-card-text class="mt-n2 text-left" height="226px" width="36px">
+          <v-row>
 
-      <v-spacer></v-spacer>
-
-      <v-col cols="5">
-        <v-row>
-          <v-btn href="login" class="text-capitalize mt-3" variant="text" size="large"
-            style="background-color: #dcf2f6">Show all</v-btn>
-          <v-btn href="admin" class="text-capitalize mt-3" elevation="2" size="large"
-            style="color: #2264D1">Auction</v-btn>
-          <v-btn class="text-capitalize mt-3" variant="text" size="large" style="background-color: #dcf2f6">Buy
-            now</v-btn>
+            <v-col cols="6">
+              <v-card-item style="padding-left: 0%;">
+                <strong style="font-size: 18px">${{ mayanhs.price }}</strong>
+              </v-card-item>
+            </v-col>
+            <v-col cols="6">
+              
+              <span v-if="mayanhs.sale > 0"
+                style="border-radius: 4px;margin-right: 0.7%;font-size: 12px;float: right;min-width: 70px;min-height: 24px;padding: 2px;background-color: #ECF7ED;text-align: center;color: #37833B;font-weight: 300;font-family: Roboto;">
+                {{ mayanhs.sale }}% OFF
+              </span>
+              <span v-if="mayanhs.cool == true"
+                style="border-radius: 4px;margin-right: 0.7%;font-size: 12px;float: right;min-width: 70px;min-height: 24px;padding: 2px;background-color: #FDEDF2;text-align: center;color: #C23564;font-weight: 300;font-family: Roboto;">
+                Cool deal!
+              </span>
+            </v-col>
+          </v-row>
+        </v-card-text>
+        <v-card-text class="mt-n4 text-left" style="font-size: 14px; color: #787885" height="226px" width="21px">{{
+          mayanhs.reviews }}</v-card-text>
+        <v-card-actions>
+          <v-rating half-increments hover readonly model-value="4.5" :size="20" color="yellow-darken-3" class="mb-1 mr-3"
+            style="padding-bottom: 6px;"></v-rating>4.5
           <v-spacer></v-spacer>
-
-          <v-btn class="mt-3" variant="text" size="large" style="background-color: #dcf2f6" @click="toggleList">
-            <div>
-              <v-icon icon="mdi mdi-view-list" style="color: #787885;"></v-icon>
-              <v-list v-if="showList" border class="mx-auto text-left" max-width="356px"
-                style="position: absolute; 
-                      top: 100%; 
-                      z-index:1;
-                      right:0;
-                      width:256px;">
-                <v-list-item link prepend-icon="mdi-inbox-arrow-down" title="Inbox"
-                  href="https://mail.google.com/mail/u/1/#inbox">
-                  <template v-slot:append>
-                    <v-badge color="error" content="6" inline></v-badge>
-                  </template>
-                </v-list-item>
-
-                <v-list-item link prepend-icon="mdi-send" title="Sent Mail"
-                  href="https://mail.google.com/mail/u/1/#inbox?compose=new"></v-list-item>
-
-                <v-list-item link prepend-icon="mdi-delete" title="Trash" href="https://mail.google.com/mail/u/1/#trash">
-                  <template v-slot:append>
-                    <v-badge color="info" content="12" inline></v-badge>
-                  </template>
-                </v-list-item>
-                <v-list-item link prepend-icon="mdi-alert-circle" title="Spam"
-                  href="https://mail.google.com/mail/u/1/#spam"></v-list-item>
-              </v-list>
-            </div>
-          </v-btn>
-
-          <v-btn class="mt-3" size="large" style="color: #2979FF  ">
-            <v-icon icon="mdi mdi-microsoft"></v-icon>
-          </v-btn>
-        </v-row>
-      </v-col>
-    </v-row>
-    <v-row>
-      <div class="d-flex justify-center ga-2">
-        <v-chip variant="while" style="font-weight: bold;">Related</v-chip>
-
-        <v-chip color="while" style="font-size: 14px">worldwide shipping</v-chip>
-
-        <v-chip color="while" style="font-size: 14px">under $50</v-chip>
-
-        <v-chip color="while" style="font-size: 14px">kitten</v-chip>
-
-        <v-chip color="while" style="font-size: 14px">plastic plugs</v-chip>
-
-        <v-chip color="while" style="font-size: 14px">pucker shoes</v-chip>
-
-        <v-chip color="while" style="font-size: 14px">vintage typewriter</v-chip>
-      </div>
-    </v-row>
-  </div>
-  <div>
-    <v-row style="padding-left:50px;">
-      <v-col cols="12" sm="6" md="4" lg="3" v-for="(mayanhs, i) in Mayanhs" :key="i">
-        <v-card height="472px" width="258px" align="center" variant="flat" hover>
-          <v-img :src="mayanhs.image" width="227px" height="224px" contain class="flex-grow-1"
-            style="object-fit: cover"></v-img>
-          <v-card-text class="mt-n4 text-left" style="font-size: 16px; color: #19191d" height="226px" with="74px">{{
-            mayanhs.title }}</v-card-text>
-          <v-card-text class="mt-n2 text-left" height="226px" width="36px">
-            <v-row>
-              <v-col cols="6">
-                <v-card-item style="padding-left: 0%;">
-                  <strong style="font-size: 18px">${{ mayanhs.price }}</strong>
-                </v-card-item>
-              </v-col>
-              <v-col cols="6">
-                <v-card-item>
-                  <v-img :src="mayanhs.hiep"></v-img>
-                </v-card-item>
-              </v-col>
-            </v-row>
-          </v-card-text>
-          <v-card-text class="mt-n4 text-left" style="font-size: 14px; color: #787885" height="226px" width="21px">{{
-            mayanhs.reviews }}</v-card-text>
-
-          <v-card-actions>
-            <v-rating half-increments hover readonly model-value="4.5" :size="20" color="yellow-darken-3"
-              class="mb-1 mr-3" style="padding-bottom: 6px;"></v-rating>4.5
-            <v-spacer></v-spacer>
-            <v-btn prepend-icon="mdi-heart-outline" variant="outlined" class="text-capitalize"
-              color="primary">Watch</v-btn>
-          </v-card-actions>
-        </v-card>
-      </v-col>
-    </v-row>
-  </div>
+          <v-btn prepend-icon="mdi-heart-outline" variant="outlined" class="text-capitalize" color="primary">Watch</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-col>
+  </v-row>
 </template>
 <script>
 export default {
@@ -132,6 +111,8 @@ export default {
           title:
             "Vintage Typewriter to post awesome stories about UI design and webdev.",
           price: "45.59",
+          sale: "0",
+          cool: "false",
           reviews: "Eligible for Shipping To Mars or somewhere else"
         },
         {
@@ -140,6 +121,8 @@ export default {
           title:
             "Lee Pucker design. Leather botinki for handsome designers. Free shipping.",
           price: "13.95",
+          sale: "0",
+          cool: "false",
           reviews: "1258 bids, 359 watchers /r $5.95 for shipping"
         },
         {
@@ -147,6 +130,8 @@ export default {
           title:
             "Timesaving kitten to save months on development. Playful, cute, cheap!",
           price: "128.99",
+          sale: "0",
+          cool: "false",
           reviews:
             "Eligible for nothing :( Eligible for nothing :( Eligible for nothing :("
         },
@@ -156,8 +141,8 @@ export default {
           title:
             "Plastic useless plugs and tubes for high-fidelity prototyping. Fit & Eat!",
           price: "12.48",
-          hiep:
-            "https://github.com/cewynit/exam_2_fe/blob/main/src/assets/50%25.png?raw=true",
+          sale: "50",
+          cool: "false",
           reviews: "Wordwide shitting available Buyers protection possible!"
         },
         {
@@ -165,6 +150,8 @@ export default {
           title:
             "Creativity stimulating lotion. Drink every morning to generate better ideas!",
           price: "12.48",
+          sale: "0",
+          cool: "false",
           reviews: "Wordwide shifting available Buyers protection possible!"
         },
         {
@@ -173,6 +160,8 @@ export default {
           title:
             "KISTOCHKI & KRASIBO. Top cosmetics brand from Chelyabinsk is here!",
           price: "128.99",
+          sale: "0",
+          cool: "false",
           reviews: "Eligible for Shipping To Mars or somewhere else"
         },
         {
@@ -181,6 +170,8 @@ export default {
           title:
             "Timesaving kitten to save months on development. Playful, cute, cheap!",
           price: "13.95",
+          sale: "0",
+          cool: "false",
           reviews: "1258 bids, 359 watchers $5.95 for shipping"
         },
         {
@@ -189,6 +180,8 @@ export default {
           title:
             "Envelope, Stripes, Pencil and etc. Purchase this kit today and feel OKAY",
           price: "9.50",
+          sale: "0",
+          cool: "false",
           reviews: "Eligible for Shipping To Mars or somewhere else"
         },
         {
@@ -197,6 +190,8 @@ export default {
           title:
             "Professional teadrinking set for every designer and developer",
           price: "45.59",
+          sale: "0",
+          cool: "false",
           reviews: "Wordwide shifting available Buyers protection possible!"
         },
         {
@@ -205,6 +200,8 @@ export default {
           title:
             "KISTOCHKI & KRASIBO. Top cosmetics brand from Chelyabinsk is here!",
           price: "11.68",
+          sale: "0",
+          cool: "false",
           reviews: "Wordwide shifting available Buyers protection possible!"
         },
         {
@@ -213,8 +210,8 @@ export default {
           title:
             "Envelope, Stripes, Pencil and etc. Purchase this kit today and feel OKAY",
           price: "1.25",
-          hiep:
-            "https://github.com/cewynit/exam_2_fe/blob/main/src/assets/cool.png?raw=true",
+          sale: "0",
+          cool: "true ",
           reviews: " Eligible for Shipping To Mars or somewhere else  else"
         },
         {
@@ -223,6 +220,8 @@ export default {
           title:
             "Envelope, Stripes, Pencil and etc. Purchase this kit today and feel OKAY",
           price: "23.25",
+          sale: "0",
+          cool: "false",
           reviews: "KISTOCHKI & KRASIBO. Top cosmetics Chelyabinsk is here!"
         }
       ],
@@ -269,3 +268,10 @@ export default {
   }
 };
 </script>
+<style>
+.custom-shadow {
+  margin-top: 10px;
+  border-radius: 10px;
+  box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.2);
+}
+</style>

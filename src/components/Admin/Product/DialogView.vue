@@ -60,9 +60,6 @@ import { productServiceApi } from '@/service/product.api';
 import { showSuccessNotification, showWarningsNotification } from '@/common/helper/helpers';
 import { useLoadingStore } from '@/store/loading';
 const loading = useLoadingStore()
-
-
-
 const props = defineProps(['idEdit'])
 const emit = defineEmits(['close', 'loadData'])
 let id = props.idEdit

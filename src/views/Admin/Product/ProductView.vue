@@ -18,6 +18,7 @@ const { fetchProducts, products, query, searchProducts } = useProduct()
 onMounted(async () => {
   loadData()
 })
+console.log(idEdit);
 const TotalProducts = ref(0);
 const loadData = async () => {
   const res = await fetchProducts()
@@ -83,14 +84,17 @@ watch(page, (newVal) => {
 })
 </script>
 <template>
-  <div style="margin: 1.5%;">
+  <div style="margin: 1.5%;" >
     <v-row>
-      <v-col cols="3">
-        <v-text-field v-model="search" style="background-color: white;" density="compact" variant="outlined"
-          label="Tìm kiếm" append-inner-icon="mdi mdi-magnify" single-line hide-details class="mr-2"></v-text-field>
+      <v-col cols="5" sm="4" md="4" lg="3">
+        <v-text-field @keyup.enter="searchEnter()" v-model="search" style="background-color: white;"
+          density="compact" variant="solo" label="Tìm kiếm" append-inner-icon="mdi mdi-magnify" single-line
+          hide-details class="mr-2"></v-text-field>
       </v-col>
-      <v-col cols="9" class="text-right">
-        <v-btn @click="addProduct()" color="#0F60FF" prepend-icon="mdi mdi-plus" class="text-uppercase">Tạo Mới</v-btn>
+      <v-col cols="7" class="text-right" lg="9" sm="8" md="8">
+        <v-btn @click="addProduct()"  color="primary" prepend-icon="mdi mdi-plus" class="text-capitalize">
+          Tạo<span class="text-lowercase">mới</span>
+        </v-btn>
       </v-col>
     </v-row>
     <v-row>
@@ -98,59 +102,69 @@ watch(page, (newVal) => {
         <v-card>
           <v-table density="compact">
             <thead>
-              <tr>
-                <th class="text-left text-uppercase text-medium-emphasis" style="opacity: 0.5;">
+              <tr style="height: 47px;">
+                <th class="text-left text-uppercase text-medium-emphasis">
                   Tên sản phẩm
                 </th>
-                <th class="text-left text-uppercase text-medium-emphasis" style="opacity: 0.5;">
+                <th class="text-left text-uppercase text-medium-emphasis">
                   Giá
                 </th>
-                <th class="text-left text-uppercase text-medium-emphasis" style="opacity: 0.5;">
+                <th class="text-left text-uppercase text-medium-emphasis">
                   Số lượng
                 </th>
-                <th class="text-left text-uppercase text-medium-emphasis" style="opacity: 0.5;">
+                <th class="text-left text-uppercase text-medium-emphasis">
                   Mô tả
                 </th>
-                <th class="text-left text-uppercase text-medium-emphasis" style="opacity: 0.5;">
+                <th class="text-left text-uppercase text-medium-emphasis">
                   Ảnh
                 </th>
                 <th class="text-center text-uppercase text-medium-emphasis">
-                  Acction
+                  Hành động
                 </th>
               </tr>
             </thead>
             <tbody>
-              <tr v-for="(item, index) in products" :key="index">
-                <td class="" style="color: black;">{{ item.name }}</td>
-                <td style="color: black;">{{ formatNumberWithCommas(item.price) }} đ</td>
-                <td style="color: black;">{{ formatNumberWithCommas(item.quantity) }}</td>
-                <td style="width: 250px;" class="v-text-truncate">
-                  {{ item.description }}
+              <tr v-if="products.length>0" v-for="(item, index) in products" :key="index">
+                <td style="width: 250px;height: 58px;"><b><p style="width: 100%;max-height: 58px;overflow: hidden;display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 1;">{{ item.name }}</p></b></td>
+                <td>${{ formatNumberWithCommas(item.price) }}</td>
+                <td>{{ formatNumberWithCommas(item.quantity) }}</td>
+                <td style="width: 250px;height: 58px;" class="v-text-truncate">
+                  <p style="width: 100%;max-height: 58px;overflow: hidden;display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 1;">{{ item.description }}</p>
                 </td>
                 <td>
-                  <v-img width="36" height="36" :src="item.image"></v-img>
+                  <v-img style="border-radius: 2px;" width="36" height="36" :src="item.image"></v-img>
                 </td>
                 <td class="text-center">
                   <v-btn density="compact" variant="text"><i class="fa-regular fa-pen-to-square mr-4"
-                      @click="updateProductById(item.id)"></i><i @click="{ isDialogDelete = true; idDelete = item.id }"
-                      class="fa-solid fa-trash"></i></v-btn>
+                      @click="updateProductById(item.id)"></i><i 
+                      @click="{ isDialogDelete = true; idDelete = item.id }"
+                      class="fa-regular fa-trash-can"></i></v-btn>
                 </td>
               </tr>
+              <tr v-else>
+                <td colspan="6"><p class="text-center text-red">Không có dữ liệu</p></td>
+              </tr>
+              <tr></tr>
             </tbody>
           </v-table>
-          <v-row class="ma-2">
-            <v-col cols="8">
+          <v-row v-show="products.length>0" class="ma-2 ">
+            <v-col cols="10" sm="9" md="6" lg="8">
               <v-row>
-                <p class="mt-5 opacity">Showing</p>
-                <v-col cols="2">
+                <span class="mt-5 opacity">Showing</span>
+                <v-col style="max-width: 105px" cols="5" sm="4" md="5" lg="2">
                   <v-select v-model="seletedValue" density="compact" :items="['10', '20', '25', '30', '50']"
                     variant="outlined"></v-select>
                 </v-col>
-                <p class="mt-5 opacity">of 50</p>
+                <span class="mt-5 opacity">of {{ TotalProducts }}</span>
               </v-row>
             </v-col>
-            <v-col cols="4" class="">
-              <v-pagination v-model="page" active-color="#0F60FF" variant="text" density="compact"
+            <v-col  cols="2" sm="3" md="6" lg="3">
+              <p class="text-center page-table1" style="font-size: 15px;display: none;margin-top: 5px;">
+                <span style="margin-bottom: 2px" @click="page=page-1" :class="{ 'text-grey-lighten-2': page === 1, 'text-black': page !== 1 }"><i class="fa-solid fa-angle-left" style="cursor: pointer;"></i></span>
+                <span style="font-weight: 700;background-color: rgb(146, 177, 239);color: blue;opacity: 0.6;border-radius: 2px;padding: 6px 10px;" class="ml-3 mr-3">{{ page }}</span>
+                <span style="margin-bottom: 2px;margin-right: 5px;" @click="page=page+1" :class="{ 'text-grey-lighten-2': page === lengthPage, 'text-black': page !== lengthPage }"><i class="fa-solid fa-chevron-right" style="cursor: pointer;"></i></span>
+              </p>
+                <v-pagination class="page-table2" v-model="page" active-color="#0F60FF" variant="text" density="compact"
                 :length="lengthPage"></v-pagination>
             </v-col>
           </v-row>
@@ -159,9 +173,26 @@ watch(page, (newVal) => {
     </v-row>
   </div>
   <DialogViewVue v-model="isShowDialog" :idEdit="idEdit" @close="close()" @loadData="loadData()" />
-  <ConfirmVue v-model="isDialogDelete" :idDelete="idDelete" @delete="deleteProductById" />
+  <ConfirmVue v-model="isDialogDelete" @close="close()" :idDelete="idDelete" @delete="deleteProductById" />
 </template>
 <style scoped>
+
+body{
+  font-family: 'Public Sans', sans-serif;
+}
+th{
+  font-family: 'Public Sans', sans-serif;
+  font-weight: 500;
+  color: #8B909A;
+  font-size: 13px;
+}
+td{
+  font-family: 'Public Sans', sans-serif;
+  font-size: 15px;
+}
+p{
+  font-family: 'Public Sans', sans-serif;
+}
 .text-truncate {
   overflow: hidden;
   white-space: nowrap;
@@ -171,4 +202,37 @@ watch(page, (newVal) => {
 .opacity {
   opacity: 0.6;
 }
-</style>
+.v-table{
+  font-size: 15px;
+}
+
+@media ((min-width: 501px) and (max-width: 650px)){
+  .page-table1{
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+  }
+  .page-table2{
+    display: none !important;
+  }
+}
+@media (max-width: 500px) {
+  .opacity {
+    display: none;
+  }
+
+  .v-btn__content {
+    font-size: 10px;
+  }
+  .text-medium-emphasis{
+    font-size: 12px;
+  }
+  .page-table1{
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+  }
+  .page-table2{
+    display: none !important;
+  }
+}</style>
