@@ -89,6 +89,7 @@ const { value: price, errorMessage: priceError } = useField(
         .required('Không được bỏ trống')
         .min(0, 'Giá không được nhỏ hơn 0')
         .typeError('Giá phải là một số')
+        .max(1000000,'Đã đạt tới giá trị tối đa')
 );
 
 const { value: quantity, errorMessage: quantityError } = useField(
@@ -99,6 +100,7 @@ const { value: quantity, errorMessage: quantityError } = useField(
         .integer('Số lượng phải là một số nguyên')
         .min(0, 'Số lượng không được nhỏ hơn 0')
         .typeError('Số lượng phải là một số')
+        .max(1000,'Đã đạt tới số lượng tối đa')
 );
 const { value: description, errorMessage: descriptionError } = useField(
     'description',
@@ -147,7 +149,7 @@ const submit = handleSubmit(async () => {
             close()
             emit('loadData')
             loading.setLoading(false)
-            showSuccessNotification("cập nhật thành công")
+            showSuccessNotification("Cập nhật thành công")
             empty()
         }
     }

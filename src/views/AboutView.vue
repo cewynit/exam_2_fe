@@ -1,11 +1,6 @@
 <template>
   <v-app>
     <Header />
-    <!-- <v-main>
-      <v-container class="py-3 px-6">
-        <router-view />
-      </v-container>
-    </v-main> -->
   </v-app>
 </template>
 <script>

@@ -77,7 +77,7 @@
                 style="border-radius: 4px;margin-right: 0.7%;font-size: 12px;float: right;min-width: 70px;min-height: 24px;padding: 2px;background-color: #ECF7ED;text-align: center;color: #37833B;font-weight: 300;font-family: Roboto;">
                 {{ mayanhs.sale }}% OFF
               </span>
-              <span v-if="mayanhs.cool == true"
+              <span v-if="mayanhs.cool == 'true'"
                 style="border-radius: 4px;margin-right: 0.7%;font-size: 12px;float: right;min-width: 70px;min-height: 24px;padding: 2px;background-color: #FDEDF2;text-align: center;color: #C23564;font-weight: 300;font-family: Roboto;">
                 Cool deal!
               </span>
@@ -211,7 +211,7 @@ export default {
             "Envelope, Stripes, Pencil and etc. Purchase this kit today and feel OKAY",
           price: "1.25",
           sale: "0",
-          cool: "true ",
+          cool: "true",
           reviews: " Eligible for Shipping To Mars or somewhere else  else"
         },
         {

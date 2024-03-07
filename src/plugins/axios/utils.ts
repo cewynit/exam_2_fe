@@ -24,7 +24,7 @@ export const sendRefreshToken = async () => {
     const formData=new FormData()
     formData.append("refresh_token",localStorageAuthService.getRefreshToken())
     response = await axios.post(
-      `${API_URL}/auth/refresh`,
+      `${API_URL}auth/refresh`,
       formData,
       { 
         // withCredentials: true,
@@ -33,16 +33,23 @@ export const sendRefreshToken = async () => {
         }
       }
     );
+    console.log(response.data?.data);
+    
     if (response?.status === HttpStatus.CREATA_AT) {
-      localStorageAuthService.setAccessToken(response.data?.access_token_new);
-      localStorageAuthService.setAccessTokenExpiredAt(response.data?.expiresIn);
+      localStorageAuthService.setAccessToken(response.data?.data.accessToken);
+      localStorageAuthService.setAccessTokenExpiredAt(response.data?.data.expiresIn);
+      
+      localStorageAuthService.setRefreshToken(response.data?.data.refreshToken);
+      localStorageAuthService.setRefresh_TokenExpiredAt(response.data?.data.refresh_expiresIn);
+      
+      localStorageAuthService.setUserRole(response.data?.data.profile?.role || "");
       return;
     }
-    logout(true);
+    // logout(true);
     return;
   } catch (error) {
-    alert("lỗi lấy lại token")
     logout(true);
+    console.log(error);
     return;
   }
 };

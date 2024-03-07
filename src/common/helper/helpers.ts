@@ -1,6 +1,4 @@
-// import { ToastType, useToasts } from '@/components/toast/store';
 import dayjs from '@/plugins/dayjs';
-// import i18n from '../plugins/vue-i18n';
 import {
   DATE_TIME_FORMAT,
   DEFAULT_FIRST_PAGE,
@@ -18,21 +16,6 @@ export function isValidJSON(str: string) {
     return false;
   }
 }
-
-// export function translateYupError(
-//   yupError:
-//     | {
-//         i18nKey: string;
-//         params?: Record<string, string>;
-//       }
-//     | string,
-// ): string {
-//   if (typeof yupError === 'string') {
-//     return i18n.global.t(yupError);
-//   }
-//   if (!yupError?.i18nKey) return '';
-//   return i18n.global.t(yupError?.i18nKey, { ...yupError?.params });
-// }
 
 export function isStringify<T>(obj: T | Record<string, unknown>): boolean {
   try {
@@ -65,11 +48,6 @@ export function maskPhone(value: string, pattern = '### #### ###') {
   let i = 0;
   return pattern.replace(/#/g, (_) => value[i++]);
 }
-
-// export function formatDate(date: Date | string) {
-//   return dayjs(date).format(DATE_TIME_FORMAT.YYYY_MM_DD_DASH);
-// }
-
 export const normalizeString = (str: string) => {
   return str
     .toLowerCase()
