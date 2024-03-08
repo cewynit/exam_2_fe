@@ -223,3 +223,11 @@ export const DEFAULT_COMMON_LIST_QUERY = {
   limit: DEFAULT_LIMIT_FOR_PAGINATION,
 };
 
+export const DEFAULT_COMMON_LIST_QUERY_USER = {
+  page: 1,
+  keyword: undefined,
+  orderBy: 'createdAt',
+  orderDirection: 'desc',
+  limit: DEFAULT_LIMIT_FOR_PAGINATION,
+};
+

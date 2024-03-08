@@ -1,12 +1,12 @@
 import { computed, onMounted, reactive, ref } from "vue";
 import { userServiceApi } from "@/service/user.api";
-import { DEFAULT_COMMON_LIST_QUERY } from "@/common/contant/contants";
+import { DEFAULT_COMMON_LIST_QUERY_USER } from "@/common/contant/contants";
 import { IUser } from "./interface";
 import { useLoadingStore } from "@/store/loading";
 export const useUser = () => {
     const loading=useLoadingStore()
     const users = ref<IUser[]>([])
-    const query=DEFAULT_COMMON_LIST_QUERY
+    const query=DEFAULT_COMMON_LIST_QUERY_USER
     const fetchUsers = async () => {
       try {
         loading.setLoading(true)

@@ -20,11 +20,11 @@
           style="color: #8B909A;font-size: 11px;">Quản lý sản phẩm</v-list-item>
         <v-list-item style="color: #8B909A;font-size: 15px;"
           :class="{ 'font-weight-bold': title === 'Danh sách sản phẩm' }" @click="setTilteStore('Danh sách sản phẩm')"
-          prepend-icon="mdi mdi-package-variant-closed" to='product'>
+          prepend-icon="mdi-cube-outline" to='product'>
           <p>Sản phẩm</p>
         </v-list-item>
         <v-list-item style="color: #8B909A; font-size: 15px;"
-          :class="{ 'font-weight-bold': title === 'Danh sách người dùng' }" prepend-icon="mdi-account-supervisor"
+          :class="{ 'font-weight-bold': title === 'Danh sách người dùng' }" prepend-icon="mdi-account-multiple"
           @click="setTilteStore('Danh sách người dùng')" to='user'>
           <p>Users</p>
         </v-list-item>
@@ -39,8 +39,8 @@
       </h3>
       <v-spacer></v-spacer>
       <v-btn>
-        <v-badge content="5" color="red">
-          <v-icon style="font-size: 20px;">mdi-bell-outline</v-icon>
+        <v-badge content="4" color="red">
+          <v-icon style="font-size: 26px;">mdi-bell-outline</v-icon>
         </v-badge>
       </v-btn>
       <v-menu open-on-hover>

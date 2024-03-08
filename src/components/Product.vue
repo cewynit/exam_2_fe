@@ -1,7 +1,7 @@
 <template>
   <v-row class="ml-3 mt-3">
     <v-col cols="4" sm="6" md="6" lg="2">
-      <v-select v-model="SortCategory" density="compact" label="Name" :items="['All']" variant="outlined"
+      <v-select v-model="SortCategory" density="compact" label="SORT BY" :items="['Useless first']" variant="outlined"
         @change="applyFilters"></v-select>
     </v-col>
     <v-col cols="4" sm="6" md="6" lg="2">
@@ -13,7 +13,7 @@
         @change="applyFilters"></v-select>
     </v-col>
     <v-col cols="12" sm="6" md="6" lg="6" class="text-right">
-      <v-btn style="background-color: rgb(212, 227, 255);color:#0f0f13" class="rounded-1 text-capitalize" variant="tonal">
+      <v-btn style="background-color: rgb(212, 227, 255);color:#5A5B6A" class="rounded-1 text-capitalize" ariant="tonal" elevation="0">
         Show
         <span class="text-lowercase ml-1"> all</span>
       </v-btn>
@@ -21,15 +21,15 @@
         variant="elevated" elevation="3">
         Auction
       </v-btn>
-      <v-btn style="background-color:rgb(212, 227, 255);color:#0f0f13" class="rounded-1 text-capitalize" variant="tonal">
+      <v-btn style="background-color: rgb(212, 227, 255);color:#5A5B6A" class="rounded-1 text-capitalize" ariant="tonal" elevation="0">
         Buy
         <span class="text-lowercase ml-1"> now</span>
       </v-btn>
       <v-btn style="background-color: rgb(212, 227, 255)" class="ml-5" ariant="tonal" elevation="0">
-        <v-icon>mdi mdi-menu</v-icon>
+        <v-icon>mdi-view-list</v-icon>
       </v-btn>
       <v-btn class="mr-5" variant="elevated">
-        <v-icon style="color: #0c5bda;">mdi mdi-microsoft</v-icon>
+        <v-icon style="color: #0c5bda;">mdi-microsoft</v-icon>
       </v-btn>
     </v-col>
   </v-row>
@@ -102,7 +102,7 @@ export default {
   data() {
     return {
       showList: false,
-      SortCategory: "All",
+      SortCategory: "Useless first",
       SortPrice: "",
       filteredMayanhs: [
         {
@@ -271,7 +271,8 @@ export default {
 <style>
 .custom-shadow {
   margin-top: 10px;
-  border-radius: 10px;
+  margin-bottom: 25px;
+  border-radius: 15px;
   box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.2);
 }
 </style>
