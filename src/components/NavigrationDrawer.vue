@@ -3,7 +3,7 @@
         <v-row style="height: 100px;">
             <v-col cols="1"></v-col>
             <v-col cols="5" >
-                <v-img class="pa-2" src="https://res.cloudinary.com/dgtjdhrnq/image/upload/v1705460127/logo1_adshdl.png"></v-img>
+                <v-img class="pa-2" src="https://thietkelogo.edu.vn/uploads/images/logo-moi/fresh-garden(1).jpg"></v-img>
             </v-col>
             <v-col cols="6" class="text-right">
                 <v-icon class="mr-2">mdi mdi-backburger</v-icon>

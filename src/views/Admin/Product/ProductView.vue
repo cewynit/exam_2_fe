@@ -126,7 +126,7 @@ watch(page, (newVal) => {
             <tbody>
               <tr v-if="products.length>0" v-for="(item, index) in products" :key="index">
                 <td style="width: 250px;height: 58px;"><b><p style="width: 100%;max-height: 58px;overflow: hidden;display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 1;">{{ item.name }}</p></b></td>
-                <td>${{ formatNumberWithCommas(item.price) }}</td>
+                <td>{{ formatNumberWithCommas(item.price) }} VNĐ</td>
                 <td>{{ formatNumberWithCommas(item.quantity) }}</td>
                 <td style="width: 250px;height: 58px;" class="v-text-truncate">
                   <p style="width: 100%;max-height: 58px;overflow: hidden;display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 1;">{{ item.description }}</p>

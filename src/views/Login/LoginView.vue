@@ -1,8 +1,8 @@
 <template>
     <div>
         <v-card class="mx-auto pa-12 pb-8 my-6" variant="flat" max-width="500" rounded="lg">
-            <v-img class="mx-auto my-6" max-width="100"
-                src="https://tse4.mm.bing.net/th?id=OIP.fv5DeUz-OmV84NOdioiodgHaEc&pid=Api&P=0&h=220"></v-img>
+            <v-img class="mx-auto my-6" max-width="200"
+                src="https://thietkelogo.edu.vn/uploads/images/logo-moi/fresh-garden(1).jpg"></v-img>
             <div class="text-h4 text-center">
                 Đăng nhập
             </div>

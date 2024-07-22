@@ -6,7 +6,7 @@
           <v-col cols="8">
             <v-toolbar-title @click.stop="rail = !rail" class="ma-3">
               <v-img width="250"
-                src="https://res.cloudinary.com/dgtjdhrnq/image/upload/v1705460127/logo1_adshdl.png"></v-img>
+                src="https://thietkelogo.edu.vn/uploads/images/logo-moi/fresh-garden(1).jpg"></v-img>
             </v-toolbar-title>
           </v-col>
           <v-col class="text-center" cols="4">

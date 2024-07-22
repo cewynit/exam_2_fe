@@ -36,10 +36,26 @@ export const useProduct = () => {
         console.error('Error fetching products:', error);
       }
     };
+    const getAllProducts = async () => {
+      try {
+          const res = await productServiceApi._getList(query)
+          if (res.success) {
+              return {
+                  data: res.items,
+                  totalItems: res.totalItems
+              }
+          }
+          return null
+      }
+      catch (error) {
+          console.error('Error:', error);
+      }
+    };
   return {
     products,
     fetchProducts,
     query,
     searchProducts,
+    getAllProducts,
   };
 };
